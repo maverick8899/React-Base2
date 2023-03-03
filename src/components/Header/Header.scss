@@ -1,0 +1,36 @@
+.navbar-brand {
+  color: rgb(68, 234, 190) !important;
+  font-weight: 700;
+}
+
+.navbar-nav {
+  .nav-link {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    &.active {
+      color: #2b3467 !important;
+      font-weight: 600;
+    }
+  }
+}
+.btn-login {
+  border-radius: 5px;
+  margin-right: 15px;
+  padding: 0 15px;
+  border: 1px solid #535353;
+  height: 40px;
+  & :hover {
+    color: rgba(53, 53, 53, 0.8);
+  }
+}
+.btn-signup {
+  border-radius: 5px;
+  padding: 0 15px;
+  color: white;
+  background: #303030;
+  height: 40px;
+  &:hover {
+    background-color: black;
+  }
+}

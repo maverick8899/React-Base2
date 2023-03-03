@@ -1,0 +1,19 @@
+.table-user {
+  height: 610px;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: -9px -1px 59px 6px rgba(0, 0, 0, 0.19),
+    0px 6px 6px 0px rgba(0, 0, 0, 0.23);
+}
+.table {
+  background-color: #bad7e9 !important;
+}
+tbody {
+  tr {
+    transition: background-color ease-in-out 200ms;
+    &:hover {
+      background-color: #afe7f2;
+      cursor: pointer;
+    }
+  }
+}

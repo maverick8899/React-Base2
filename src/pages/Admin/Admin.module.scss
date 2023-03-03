@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  .sidebar {
+    height: 100vh !important;
+  }
+  .content {
+    width: 100%;
+    .header {
+      border: 1px solid green;
+    }
+  }
+}

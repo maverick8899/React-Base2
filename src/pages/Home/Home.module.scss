@@ -1,0 +1,37 @@
+video {
+  z-index: -1;
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  width: 100vw;
+  top: 0;
+  margin-top: -90px;
+}
+.home {
+  padding: 120px;
+  width: 60%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  .title {
+    font-size: 35px;
+    font-weight: 600;
+  }
+  .content {
+    font-size: 22px;
+  }
+  .btn-start {
+    button {
+      border-radius: 5px;
+      border: none;
+      padding: 0 15px;
+      color: white;
+      background: #303030;
+      height: 40px;
+      &:hover {
+        background-color: black;
+      }
+    }
+  }
+}
