@@ -1,8 +1,8 @@
-import axios from "../utils/axiosCustomize";
+import axiosUserHTTP from "../utils/axiosCustomize";
 
 const getUser = async () => {
   try {
-    const res = await axios.get("user/users");
+    const res = await axiosUserHTTP.get("user/users");
     return res;
   } catch (error) {
     console.log(error);
@@ -11,7 +11,7 @@ const getUser = async () => {
 
 const postUser = (email, password, username, role, userImage) => {
   try {
-    return axios.post("user/users", {
+    return axiosUserHTTP.post("user/users", {
       email,
       password,
       username,
@@ -25,7 +25,7 @@ const postUser = (email, password, username, role, userImage) => {
 
 const putUser = async (id, username, role, userImage) => {
   try {
-    return await axios.put(`user/users/${id}`, {
+    return await axiosUserHTTP.put(`user/users/${id}`, {
       username,
       role,
       userImage,
@@ -34,9 +34,10 @@ const putUser = async (id, username, role, userImage) => {
     console.log(error);
   }
 };
+
 const deleteUser = async (id) => {
   try {
-    return await axios.delete(`user/users/${id}`);
+    return await axiosUserHTTP.delete(`user/users/${id}`);
   } catch (error) {
     console.log(error);
   }

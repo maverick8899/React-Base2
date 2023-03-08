@@ -1,13 +1,14 @@
 import axios from "axios";
 
-const getData = async () => {
+const getUser = async ({ page, perPage }) => {
   try {
-    const res = await fetch("http://localhost:8081/");
-    const data = res.json();
-    return data;
+    const res = await axios.get("http://localhost:8080/users/paginate", {
+      params: { page, per_page: perPage },
+    });
+    return res;
   } catch (error) {
     console.log(error);
   }
 };
 
-export { getData };
+export { getUser };

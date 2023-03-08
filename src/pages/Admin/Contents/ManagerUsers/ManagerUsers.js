@@ -8,6 +8,7 @@ import * as userServices from "../../../../services/userServices";
 import TableUsers from "./TableUsers/TableUsers";
 import ModalTitle from "./ModalTitle";
 import { toast } from "react-toastify";
+import * as backend from "../../../../services/backend";
 
 const cx = classNames.bind(styles);
 const ManagerUsers = () => {
@@ -31,7 +32,7 @@ const ManagerUsers = () => {
   //Attention:  ModalUser sau khi handleSave thì call fetchAPI <=> setUsers=> re-render DOM
   const fetchAPI = async () => {
     try {
-      const res = await userServices.getUser();
+      const res = await backend.getUser({ page: 1, perPage: 12 });
       setUsers(res.data);
     } catch (error) {
       console.log(error);
