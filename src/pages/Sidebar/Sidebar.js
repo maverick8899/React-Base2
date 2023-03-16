@@ -48,7 +48,7 @@ const sidebar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
             }}
           >
             <DiReact size={"3em"} color={"00bfff"} />
-            Title Sidebar
+            <Link to="/"> Title Sidebar</Link>
           </div>
         </SidebarHeader>
         <SidebarContent>

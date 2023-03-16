@@ -22,7 +22,7 @@ const ManagerUsers = () => {
   const [userUpdate, setUserUpdate] = useState({});
   const [userView, setUserView] = useState({});
 
-  const ref = useRef();
+  const ref = useRef(); //chứa user,dùng cho update delete
 
   useEffect(() => {
     fetchAPI();
@@ -51,7 +51,7 @@ const ManagerUsers = () => {
     ref.user = user;
   };
   const handleDeleteUser = async () => {
-    const res = await userServices.deleteUser(ref.user.id);
+    const res = await backend.deleteUser(ref.user.id);
     await fetchAPI();
     res.status === 200 && toast.success("User Deleted Success");
   };
@@ -99,7 +99,7 @@ const ManagerUsers = () => {
           show={showNotifyDeleteSuccess}
           setShow={setShowNotifyDeleteSuccess}
           handleDeleteUser={handleDeleteUser}
-          dataUpdate={ref.user}
+          dataDelete={ref.user}
         />
       </div>
     </div>

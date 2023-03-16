@@ -1,14 +1,14 @@
 import styles from "./Home.module.scss";
-// import Video from "../../assets/video-home.mp4";
+import Video from "../../assets/video-home.mp4";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 function Home() {
   return (
     <div className={styles.container}>
-      {/* <video autoPlay muted loop>
+      <video autoPlay muted loop>
         <source src={Video} type="video/mp4" />
-      </video> */}
+      </video>
       <div className={cx("home")}>
         <div className={cx("title")}>There's a better way to ask</div>
         <div className={cx("content")}>

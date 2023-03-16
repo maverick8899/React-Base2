@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 const ModalTitle = ({
   show,
   setShow,
-  dataUpdate,
+  dataDelete,
   handleDeleteUser = () => {},
 }) => {
   //
@@ -19,7 +19,7 @@ const ModalTitle = ({
         </Modal.Header>
         <Modal.Body>
           Are you sure delete User, Email :
-          <b> {dataUpdate && dataUpdate.email}</b>
+          <b> {dataDelete && dataDelete.email}</b>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

@@ -8,6 +8,7 @@ import _ from "lodash";
 
 import styles from "./ManagerUsers.module.scss";
 import * as userServices from "../../../../services/userServices";
+import * as backend from "../../../../services/backend";
 
 const cx = classNames.bind(styles);
 function ModalUser({
@@ -64,7 +65,9 @@ function ModalUser({
     setImage(URL.createObjectURL(e.target.files[0]));
   };
   const handleSave = async () => {
+    //if POST user
     if (!update) {
+      //validate
       if (!validateEmail(email)) {
         toast.error("Invalid email");
         return;
@@ -77,23 +80,16 @@ function ModalUser({
         toast.error("Enter User Name, please");
         return;
       }
-    } else {
-      await userServices.putUser(dataUpdate.id, userName, role, image);
+      //post user
+      let res = await backend.postUser(email, password, userName, role, image);
+      res.status === 201 && toast.success("Add User Success");
+    } //if PUT user
+    else {
+      await backend.putUser(dataUpdate.id, userName, role, image);
     }
     // khi click save thì close modal đồng thời set mặc định các field
     setShow(false);
     handleClose();
-    //post user
-    if (!update) {
-      let res = await userServices.postUser(
-        email,
-        password,
-        userName,
-        role,
-        image
-      );
-      res.status === 201 && toast.success("Add User Success");
-    }
     //sau khi post lên thì getApi, để render lại list user
     await fetchAPI();
   };
@@ -115,6 +111,7 @@ function ModalUser({
               <label className="form-label">Email</label>
               <input
                 type="email"
+                name="email"
                 className="form-control"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -125,6 +122,7 @@ function ModalUser({
               <label className="form-label">Password</label>
               <input
                 type={view ? "text" : "password"}
+                name="password"
                 className="form-control"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -135,6 +133,7 @@ function ModalUser({
               <label className="form-label">User name</label>
               <input
                 type="text"
+                name="username"
                 className="form-control"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
@@ -148,6 +147,7 @@ function ModalUser({
                 onChange={(e) => setRole(e.target.value)}
                 defaultValue={dataUpdate ? dataUpdate.role : role}
                 disabled={view ? true : false}
+                name="role"
               >
                 <option value="User">User</option>
                 <option value="Admin"> Admin</option>
