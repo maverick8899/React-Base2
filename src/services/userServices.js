@@ -1,7 +1,8 @@
-import axiosUserHTTP from "../utils/axiosCustomize";
+import axiosUserHTTP from "../utils/axiosCustomizeMockApi";
 
 const getUser = async () => {
   try {
+    console.log(process.env);
     const res = await axiosUserHTTP.get("user/users");
     return res;
   } catch (error) {

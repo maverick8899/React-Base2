@@ -1,8 +1,10 @@
-import axios from "axios";
+import axiosBackend from "../utils/axiosCustomizeBackend";
+
+// console.log(process.env); //show object .env chứa các biến môi trường
 
 const getUser = async ({ page, perPage }) => {
   try {
-    const res = await axios.get("http://localhost:8080/users/paginate", {
+    const res = await axiosBackend.get("paginate", {
       params: { page, per_page: perPage },
     });
     return res;
@@ -12,7 +14,7 @@ const getUser = async ({ page, perPage }) => {
 };
 const postUser = async (email, password, username, role, userImage) => {
   try {
-    const res = await axios.post("http://localhost:8080/users/store", {
+    const res = await axiosBackend.post("store", {
       password,
       role,
       userImage,
@@ -26,7 +28,7 @@ const postUser = async (email, password, username, role, userImage) => {
 };
 const putUser = async (id, username, role, userImage) => {
   try {
-    return await axios.put(`http://localhost:8080/users/${id}/update`, {
+    return await axiosBackend.put(`${id}/update`, {
       username,
       role,
       userImage,
@@ -37,7 +39,7 @@ const putUser = async (id, username, role, userImage) => {
 };
 const deleteUser = async (id) => {
   try {
-    return await axios.delete(`http://localhost:8080/users/${id}/delete`);
+    return await axiosBackend.delete(`${id}/delete`);
   } catch (error) {
     console.log(error);
   }

@@ -4,14 +4,16 @@ import { FcPlus } from "react-icons/fc";
 
 import styles from "./ManagerUsers.module.scss";
 import ModalUser from "./ModalUser";
-import * as userServices from "../../../../services/userServices";
+// import * as userServices from "../../../../services/userServices";
 import TableUsers from "./TableUsers/TableUsers";
 import ModalTitle from "./ModalTitle";
 import { toast } from "react-toastify";
 import * as backend from "../../../../services/backend";
 
 const cx = classNames.bind(styles);
+const LIMIT_USER = 10;
 const ManagerUsers = () => {
+  //
   //INITIALIZE
   const [showCreateUser, setShowCreateUser] = useState(false);
   const [showUpdateUser, setShowUpdateUser] = useState(false);
@@ -22,6 +24,7 @@ const ManagerUsers = () => {
   const [userUpdate, setUserUpdate] = useState({});
   const [userView, setUserView] = useState({});
 
+  const [pageCount, setPageCount] = useState(0);
   const ref = useRef(); //chứa user,dùng cho update delete
 
   useEffect(() => {
@@ -32,12 +35,22 @@ const ManagerUsers = () => {
   //Attention:  ModalUser sau khi handleSave thì call fetchAPI <=> setUsers=> re-render DOM
   const fetchAPI = async () => {
     try {
-      const res = await backend.getUser({ page: 1, perPage: 12 });
-      setUsers(res.data);
+      const res = await backend.getUser({ page: 1, perPage: LIMIT_USER });
+      setUsers(res.data.users);
+      setPageCount(res.data.totalPages);
     } catch (error) {
       console.log(error);
     }
   };
+  const handleClickNextPage = async (page) => {
+    try {
+      const res = await backend.getUser({ page, perPage: LIMIT_USER });
+      setUsers(res.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleClickUpdateBtn = (user) => {
     setShowUpdateUser(true);
     setUserUpdate(user);
@@ -73,7 +86,9 @@ const ManagerUsers = () => {
             users={users}
             handleClickUpdateBtn={handleClickUpdateBtn}
             handleClickViewBtn={handleClickViewBtn}
+            handleClickNextPage={handleClickNextPage}
             getUser={getUser}
+            pageCount={pageCount}
           />
         </div>
         <ModalUser

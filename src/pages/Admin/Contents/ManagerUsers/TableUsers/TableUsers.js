@@ -1,11 +1,20 @@
+import ReactPaginate from "react-paginate";
+
 import "./TableUsers.scss";
 
 const TableUsers = ({
   users,
   handleClickUpdateBtn = () => {},
   handleClickViewBtn = () => {},
+  handleClickNextPage = () => {},
   getUser = () => {},
+  pageCount,
 }) => {
+  //
+  const handlePageClick = (event) => {
+    handleClickNextPage(+event.selected + 1); //convert sang number
+    console.log(`User requested page number ${event.selected + 1}`);
+  };
   //
   return (
     <div>
@@ -50,6 +59,28 @@ const TableUsers = ({
           ))}
         </tbody>
       </table>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ReactPaginate
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageCount={pageCount} //amount page
+          previousLabel="< previous"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          renderOnZeroPageCount={null}
+        />
+      </div>
     </div>
   );
 };

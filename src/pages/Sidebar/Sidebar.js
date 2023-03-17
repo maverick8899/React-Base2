@@ -8,16 +8,8 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
-import {
-  FaTachometerAlt,
-  FaGem,
-  FaList,
-  FaGithub,
-  FaRegLaughWink,
-  FaHeart,
-} from "react-icons/fa";
+import { FaGem, FaGithub } from "react-icons/fa";
 import { DiReact } from "react-icons/di";
-import { GiReactor } from "react-icons/gi";
 import { MdDashboard } from "react-icons/md";
 
 import "./Sidebar.scss";
@@ -85,7 +77,7 @@ const sidebar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
             }}
           >
             <a
-              href="https://github.com/KimBang89/React_Base/tree/product"
+              href="https://github.com/kimbang89/React-Base2"
               target="_blank"
               className="sidebar-btn"
               rel="noopener noreferrer"
